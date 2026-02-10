@@ -1,0 +1,33 @@
+.sd-import-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  background: #0077ff;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 22px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.sd-import-btn:hover {
+  background: #0064d6;
+}
+
+.sd-import-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.sd-import-btn[data-status="done"] {
+  background: #0f8b4c;
+}
+
+.sd-import-btn[data-status="error"] {
+  background: #b42318;
+}
