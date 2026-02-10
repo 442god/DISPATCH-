@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CD → SD Import Settings</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 760px;
+        margin: 24px auto;
+        padding: 0 16px;
+      }
+      h1 {
+        margin-bottom: 8px;
+      }
+      p {
+        color: #555;
+      }
+      label {
+        display: block;
+        margin-top: 18px;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+      }
+      button {
+        margin-top: 20px;
+        background: #0b6bcb;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      #status {
+        margin-top: 12px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Central Dispatch → Super Dispatch</h1>
+    <p>
+      Configure where the extension sends parsed load data when you click “Import to
+      Super Dispatch”.
+    </p>
+
+    <label for="importEndpoint">Import endpoint URL</label>
+    <input id="importEndpoint" type="url" placeholder="https://your-service/import-load" />
+
+    <label for="apiToken">API token (optional bearer token)</label>
+    <input id="apiToken" type="password" placeholder="Bearer token" />
+
+    <button id="saveButton" type="button">Save Settings</button>
+    <div id="status" aria-live="polite"></div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
