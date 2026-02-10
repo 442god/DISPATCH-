@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Central Dispatch → Super Dispatch Import",
+  "description": "Adds an Import to Super Dispatch button in Central Dispatch load cards and sends parsed load data to a configured import endpoint.",
+  "version": "1.0.0",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://*.centraldispatch.com/*",
+    "https://*.superdispatch.com/*",
+    "https://*/*"
+  ],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.centraldispatch.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "CD → SD Import"
+  }
+}
