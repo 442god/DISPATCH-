@@ -12,7 +12,7 @@ This extension injects an **Import to Super Dispatch** button into Central Dispa
   - first detected vehicle line
   - extracted price
 - Sends data as JSON to an endpoint you configure.
-- Supports optional Bearer token authentication (recommended only for your own backend endpoint).
+- Supports optional Bearer token authentication.
 
 ## Install (developer mode)
 
@@ -61,5 +61,3 @@ This extension injects an **Import to Super Dispatch** button into Central Dispa
 
 - Selectors in Central Dispatch can change; adjust parsing logic in `content.js` if needed.
 - The default endpoint in code is a placeholder and should be replaced with your actual backend endpoint.
-
-- If your endpoint is on `superdispatch.com`, do **not** paste a browser cookie/session token in extension settings. Use an integration/backend token from your API service.

@@ -7,26 +7,11 @@ function getConfig() {
   });
 }
 
-function isSuperDispatchHost(urlValue) {
-  try {
-    const endpoint = new URL(urlValue);
-    return /(^|\.)superdispatch\.com$/i.test(endpoint.hostname);
-  } catch {
-    return false;
-  }
-}
-
 async function sendImport(payload) {
   const { importEndpoint, apiToken } = await getConfig();
 
   if (!importEndpoint) {
     throw new Error('Missing import endpoint. Configure extension options first.');
-  }
-
-  if (apiToken && isSuperDispatchHost(importEndpoint)) {
-    throw new Error(
-      'Do not use session/cookie token for superdispatch.com endpoints. Use a backend integration token instead.'
-    );
   }
 
   const headers = {

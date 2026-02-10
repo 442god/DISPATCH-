@@ -91,16 +91,12 @@ async function importLoad(card, button) {
   button.textContent = 'Imported ✓';
 }
 
-function findInsertionNode(card) {
-  return card.querySelector('[class*="load"]') || card;
-}
-
 function createImportButton(card) {
-  if (card.hasAttribute(PROCESSED_ATTR) || card.querySelector('.sd-import-btn')) {
+  if (card.hasAttribute(PROCESSED_ATTR)) {
     return;
   }
 
-  const loadInfoNode = findInsertionNode(card);
+  const loadInfoNode = card.querySelector('[class*="load"]') || card;
   const button = document.createElement('button');
   button.className = 'sd-import-btn';
   button.type = 'button';
@@ -122,39 +118,16 @@ function createImportButton(card) {
   card.setAttribute(PROCESSED_ATTR, 'true');
 }
 
-function hasLoadMarkers(node) {
-  const text = cleanText(node.textContent);
-  return /Dispatch Info/i.test(text) && /Load Info/i.test(text);
-}
-
-function getCandidateCards() {
-  const dispatchInfoNodes = Array.from(document.querySelectorAll('div, section, article, li'))
-    .filter((node) => /Dispatch Info/i.test(cleanText(node.textContent)));
-
-  const cards = new Set();
-
-  dispatchInfoNodes.forEach((node) => {
-    const card = node.closest('article, section, li, div');
-    if (!card || !hasLoadMarkers(card)) {
-      return;
-    }
-
-    const nestedSameMarker = Array.from(card.querySelectorAll('article, section, li, div'))
-      .some((child) => child !== card && hasLoadMarkers(child) && child.contains(node));
-
-    if (nestedSameMarker) {
-      return;
-    }
-
-    cards.add(card);
-  });
-
-  return Array.from(cards);
-}
-
 function bindButtons() {
-  const cards = getCandidateCards();
-  cards.forEach((card) => createImportButton(card));
+  const cards = document.querySelectorAll('div, article, section');
+  cards.forEach((card) => {
+    const text = cleanText(card.textContent);
+    if (!text || !/Dispatch Info/i.test(text) || !/Load Info/i.test(text)) {
+      return;
+    }
+
+    createImportButton(card);
+  });
 }
 
 const observer = new MutationObserver(() => bindButtons());
